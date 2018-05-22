@@ -34,11 +34,11 @@ class HasTVars a where
 
 -- | Type variables of a type
 instance HasTVars Type where
-  freeTVars t     = error "TBD: ..."
+  freeTVars t     = error "TBD: type freeTVars"
 
 -- | Free type variables of a poly-type (remove forall-bound vars)
 instance HasTVars Poly where
-  freeTVars s     = error "TBD: ..."
+  freeTVars s     = error "TBD: poly freeTVars"
 
 -- | Free type variables of a type environment
 instance HasTVars TypeEnv where
@@ -58,11 +58,11 @@ extendTypeEnv x s gamma = (x,s) : gamma
 -- | Lookup a type variable in a substitution;
 --   if not present, return the variable unchanged
 lookupTVar :: TVar -> Subst -> Type
-lookupTVar a sub = error "TBD: ..."
+lookupTVar a sub = error "TBD: lookupTVar"
 
 -- | Remove a type variable from a substitution
 removeTVar :: TVar -> Subst -> Subst
-removeTVar a sub = error "TBD: ..."
+removeTVar a sub = error "TBD: removeTVar"
      
 -- | Things to which type substitutions can be apply
 class Substitutable a where
@@ -70,11 +70,11 @@ class Substitutable a where
   
 -- | Apply substitution to type
 instance Substitutable Type where  
-  apply sub t         = error "TBD: ..."
+  apply sub t         = error "TBD: type apply"
 
 -- | Apply substitution to poly-type
 instance Substitutable Poly where    
-  apply sub s         = error "TBD: ..."
+  apply sub s         = error "TBD: poly apply"
 
 -- | Apply substitution to (all poly-types in) another substitution
 instance Substitutable Subst where  
@@ -90,7 +90,7 @@ instance Substitutable TypeEnv where
       
 -- | Extend substitution with a new type assignment
 extendSubst :: Subst -> TVar -> Type -> Subst
-extendSubst sub a t = error "TBD: ..."
+extendSubst sub a t = error "TBD: extendSubst"
       
 --------------------------------------------------------------------------------
 -- Problem 2: Unification
@@ -115,24 +115,24 @@ extendState (InferState sub n) a t = InferState (extendSubst sub a t) n
 -- | Unify a type variable with a type; 
 --   if successful return an updated state, otherwise throw an error
 unifyTVar :: InferState -> TVar -> Type -> InferState
-unifyTVar st a t = error "TBD: ..."
+unifyTVar st a t = error "TBD: unifyTVar"
     
 -- | Unify two types;
 --   if successful return an updated state, otherwise throw an error
 unify :: InferState -> Type -> Type -> InferState
-unify st t1 t2 = error "TBD: ..."
+unify st t1 t2 = error "TBD: unify"
 
 --------------------------------------------------------------------------------
 -- Problem 3: Type Inference
 --------------------------------------------------------------------------------    
   
 infer :: InferState -> TypeEnv -> Expr -> (InferState, Type)
-infer st _   (EInt _)          = error "TBD: ..."
-infer st _   (EBool _)         = error "TBD: ..."
-infer st gamma (EVar x)        = error "TBD: ..."
-infer st gamma (ELam x body)   = error "TBD: ..."
-infer st gamma (EApp e1 e2)    = error "TBD: ..."
-infer st gamma (ELet x e1 e2)  = error "TBD: ..."
+infer st _   (EInt _)          = error "TBD: infer EInt"
+infer st _   (EBool _)         = error "TBD: infer EBool"
+infer st gamma (EVar x)        = error "TBD: infer EVar"
+infer st gamma (ELam x body)   = error "TBD: infer ELam"
+infer st gamma (EApp e1 e2)    = error "TBD: infer EApp"
+infer st gamma (ELet x e1 e2)  = error "TBD: infer ELet"
 infer st gamma (EBin op e1 e2) = infer st gamma asApp
   where
     asApp = EApp (EApp opVar e1) e2
@@ -145,29 +145,29 @@ infer st gamma ENil = infer st gamma (EVar "[]")
 
 -- | Generalize type variables inside a type
 generalize :: TypeEnv -> Type -> Poly
-generalize gamma t = error "TBD: ..."
+generalize gamma t = error "TBD: generalize"
     
 -- | Instantiate a polymorphic type into a mono-type with fresh type variables
 instantiate :: Int -> Poly -> (Int, Type)
-instantiate n s = error "TBD: ..."
+instantiate n s = error "TBD: instantiate"
       
 -- | Types of built-in operators and functions      
 preludeTypes :: TypeEnv
 preludeTypes =
   [ ("+",    Mono $ TInt :=> TInt :=> TInt)
-  , ("-",    error "TBD: ...")
-  , ("*",    error "TBD: ...")
-  , ("/",    error "TBD: ...")
-  , ("==",   error "TBD: ...")
-  , ("!=",   error "TBD: ...")
-  , ("<",    error "TBD: ...")
-  , ("<=",   error "TBD: ...")
-  , ("&&",   error "TBD: ...")
-  , ("||",   error "TBD: ...")
-  , ("if",   error "TBD: ...")
+  , ("-",    error "TBD: -")
+  , ("*",    error "TBD: *")
+  , ("/",    error "TBD: /")
+  , ("==",   error "TBD: ==")
+  , ("!=",   error "TBD: !=")
+  , ("<",    error "TBD: <")
+  , ("<=",   error "TBD: <=")
+  , ("&&",   error "TBD: &&")
+  , ("||",   error "TBD: ||")
+  , ("if",   error "TBD: if")
   -- lists: 
-  , ("[]",   error "TBD: ...")
-  , (":",    error "TBD: ...")
-  , ("head", error "TBD: ...")
-  , ("tail", error "TBD: ...")
+  , ("[]",   error "TBD: []")
+  , (":",    error "TBD: :")
+  , ("head", error "TBD: head")
+  , ("tail", error "TBD: tail")
   ]
