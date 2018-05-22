@@ -87,8 +87,8 @@ data Poly = Mono Type
           | Forall TVar Poly
           
 -- Convenience function to create a list type           
-list :: TVar -> Type
-list a = TList (TVar a)
+list :: Type -> Type
+list = TList
 
 -- Convenience function to create a forall with one type parameter
 forall :: TVar -> Type -> Poly
