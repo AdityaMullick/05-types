@@ -7,7 +7,7 @@
 
 The overall objective of this assignment is to
 better understand the notions of type checking, type inference, and polymorphism
-by implementing an type inference algorithm for Nano.
+by implementing a type inference algorithm for Nano.
 
 The assignment is in the file:
 
@@ -223,7 +223,7 @@ instance Substitutable Type where
 
 instance Substitutable Poly where    
   apply sub p         = error "TBD: ..."
-``
+```
 
 Once you have implemented this functionality and
 recompiled, you should get the following behavior:
@@ -382,10 +382,14 @@ Int
 ### (b) Polymorphism: 50 points
 
 Now let's add support for polymorphism!
-In this version, variables in the type environment can have polymorphic types, like `forall "a" ("a" :=> "a")`.
-Whenever we use a variable, we have to **instantiate** its poly-type,
-i.e. replace all bound type variable with *fresh free type variables*.
-Whenever we define a variable using a `let`, we have to **generalize** its type into a poly-type.
+
+  * In this version, variables in the type environment can have polymorphic types, like `forall a . a -> a`.
+  
+  * Whenever we use a variable, we have to **instantiate** its poly-type, 
+    i.e. replace all bound type variable with *fresh free type variables*.
+    
+  * Whenever we define a variable using a `let`, 
+    we have to **generalize** its type into a poly-type.
 
 First implement the function `generalize gamma t` that generalizes `t` into a poly-type,
 i.e. binds all its type variables that are *not free* in `gamma` with a `Forall`:
