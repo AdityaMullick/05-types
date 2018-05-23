@@ -433,8 +433,8 @@ instantiate :: Int -> Poly -> (Int, Type)
 ```
 
 **Assumption:** 
-You can assume that bound type variables in the poly-type
-never coincide with `a0, a1, ...`, which are reserved by the algorithm for use as fresh type variables.
+In `instantiate n s`, you can assume that bound type variables in `s`
+cannot clash with `ai` where `i >= n`. 
 Remember to *guarantee* this property whenever you construct your own polymorphic types.
 
 When you are done you should observe the following behavior:
