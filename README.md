@@ -143,7 +143,7 @@ type Subst = [(TVar, Type)]
 ```
 
 Throughout the assignment, make sure that the keys (type variables) in the substitution are *unique*.
-You also get to assume this property when you implement operations on substitutions.
+You also get to *assume* this property when you implement operations on substitutions.
 
 
 
@@ -303,8 +303,10 @@ unifyTVar :: InferState -> TVar -> Type -> InferState
 
 You can use a helper function `extendState` to extend a substitution inside a state.
 
-You can assume (and have to maintain!) that `a` does not appear in the *domain* of `stSub st`
-(i.e. among the type variables it maps).
+**Assumption:** 
+You can *assume* that `a` does not appear in the *domain* of `stSub st`
+(i.e. among the type variables it maps);
+remember to *guarantee* this property whenever you call `unifyTVar`.
 
 When you are done you should get the following behavior:
 
@@ -330,8 +332,9 @@ If it fails, it throws an exception.
 unify :: InferState -> Type -> Type -> InferState
 ```
 
-You can assume (and have to maintain!) 
-that any type variables in `t1` and `t2` do not appear in the domain of `stSub st`.
+**Assumption:** 
+You can *assume* that any type variables in `t1` and `t2` do not appear in the domain of `stSub st`;
+remember to *guarantee* this property whenever you call `unify`.
 
 When you are done you should get the following behavior:
 
@@ -429,8 +432,10 @@ Here `n` is the index of the first unused fresh type variable.
 instantiate :: Int -> Poly -> (Int, Type)
 ```
 
+**Assumption:** 
 You can assume that bound type variables in the poly-type
 never coincide with `a0, a1, ...`, which are reserved by the algorithm for use as fresh type variables.
+Remember to *guarantee* this property whenever you construct your own polymorphic types.
 
 When you are done you should observe the following behavior:
 
