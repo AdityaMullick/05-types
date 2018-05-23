@@ -1,9 +1,6 @@
 {-# LANGUAGE FlexibleInstances, OverloadedStrings, BangPatterns #-}
 
-module Language.Nano.TypeCheck
-  ( typeOfFile, typeOfString, typeOfExpr, 
-    unify, infer )
-  where
+module Language.Nano.TypeCheck where
 
 import Language.Nano.Types
 import Language.Nano.Parser
