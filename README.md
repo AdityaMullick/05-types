@@ -170,6 +170,17 @@ instance HasTVars Poly where
 
 As always, you are allowed (and encouraged) to replace `freeTVars t` and `freeTVars s` with multiple equations for different patterns.
 
+Throughout this assignment, you are allowed to use any library functions,
+as long as you don't add new `import` statements.
+In particular, some useful functions from the `List` library include `delete`, `nub, and `\\` (look them up on Hoogle).
+Note: the `List` library is imported *qualified*:
+
+```haskell
+import qualified Data.List as L
+```
+
+So whenever you want to use a function from that library, you have to prefix its name with `L.` (e.g. `L.delete`).
+
 When you are done you should get the following behavior:
 
 ```haskell
@@ -191,7 +202,8 @@ Implement a function to lookup what a type variable maps to in a substitution:
 ```haskell
 lookupTVar :: TVar -> Subst -> Type
 ```
-and a function to remove the mapping for a given type varaible from a substitution:
+and a function to remove the mapping for a given type variable from a substitution
+(recall that all variables in a substitution are supposed to be unique):
 
 ```haskell
 removeTVar :: TVar -> Subst -> Subst
@@ -291,7 +303,8 @@ unifyTVar :: InferState -> TVar -> Type -> InferState
 
 You can use a helper function `extendState` to extend a substitution inside a state.
 
-You can assume (and have to maintain!) that `a` does not appear in the domain of `stSub st`.
+You can assume (and have to maintain!) that `a` does not appear in the *domain* of `stSub st`
+(i.e. among the type variables it maps).
 
 When you are done you should get the following behavior:
 
@@ -416,6 +429,9 @@ Here `n` is the index of the first unused fresh type variable.
 instantiate :: Int -> Poly -> (Int, Type)
 ```
 
+You can assume that bound type variables in the poly-type
+never coincide with `a0, a1, ...`, which are reserved by the algorithm for use as fresh type variables.
+
 When you are done you should observe the following behavior:
 
 ```haskell
@@ -441,6 +457,8 @@ and reuse the type inference for variables and function application.
 
 Fill in the types of built-in functions inside `preludeTypes`
 (we have pre-filled the one for `+`).
+Remember that you are not allowed to use `a0, a1, ...` as bound type variables,
+since those are reserved for use as free type variables by the algorithm.
 
 At this point the first 18 tests should pass.
 
