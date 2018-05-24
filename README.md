@@ -369,8 +369,10 @@ Let's first consider the fragment of the language without:
 Implement the function `infer st gamma e` for this fragment.
 This function attempts to infer the type of `e` in type environment `gamma`
 given that the current state is `st`.
-If it succeeds, it returns a new state (possibly extended with a new type assignment) 
-and the inferred type of `e`.
+If `e` imposes constraints on the types of its sub-expressions, 
+`infer` calls `unify` to enforce these constraints. 
+If all unification steps succeed, `infer` returns the inferred type of `e` and a new state 
+(possibly extended with new type assignments generated during unification).
 
 In this part, you can assume that the type environment maps all variables to mono-types, i.e. `Mono t`.
 
