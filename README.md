@@ -1,6 +1,6 @@
 # Assignment 5: Nano Types (240 points)
 
-## Due by Monday 5/28 23:59:59
+## Due by ~~Monday 5/28~~ Friday 6/1 23:59:59
 
 
 ## Overview
