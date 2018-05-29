@@ -152,7 +152,7 @@ exprString (EVar x)       = x
 exprString (EBin o e1 e2) = printf "(%s %s %s)" (show e1) (show o) (show e2)
 exprString (EIf c t e)    = printf "if %s then %s else %s" (show c) (show t) (show e)
 exprString (ELet x e e')  = printf "let %s = %s in \n %s" x (show e) (show e')
-exprString (EApp e1 e2)   = printf "(%s %s)" (show e1) (show e2)
+exprString (EApp e1 e2)   = printf "((%s) %s)" (show e1) (show e2)
 exprString (ELam x e)     = printf "\\%s -> %s" x (show e)
 exprString ENil           = "[]"
 
